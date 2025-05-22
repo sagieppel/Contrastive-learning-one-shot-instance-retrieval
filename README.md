@@ -57,3 +57,4 @@ The script will run the model with the 3 images and will find if **anchor_image*
 
 
 ![](/Net_Structure.jpg)
+Figure: Overview net structure and training with 2D shapes
