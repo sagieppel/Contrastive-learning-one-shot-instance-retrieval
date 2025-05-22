@@ -5,6 +5,7 @@ Simple net that can be used using the [Large Shape and Texture Dataset](https://
 # Training
 
 Download and extract train data for :
+
 [3D shape recognition one-shot training set](https://zenodo.org/records/15453634/files/3D_Shape_Recognition_Synthethic_GENERAL_LARGE_SET_76k.zip?download=1)
 
 [2D shape recognition one-shot training set](https://zenodo.org/records/15453634/files/2D_Shapes_Recognition_Textured_Synthetic_Resize2_GENERAL_LARGE_SET_61k.zip?download=1)
