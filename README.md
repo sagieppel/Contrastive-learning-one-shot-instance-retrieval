@@ -48,7 +48,9 @@ Set the path to the trained model weights in **saved_model**.
 Set paths to 3 images in
 
 **anchor_image**,  
+
 **sample_image1**, 
+
 **sample_image2** 
 
 The script will run the model with the 3 images and will find if **anchor_image**  is more similar to **sample_image1** or **sample_image2**.
