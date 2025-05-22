@@ -6,8 +6,11 @@ Simple net that can be used using the [Large Shape and Texture Dataset](https://
 
 Download and extract train data for :
 [3D shape recognition one-shot training set](https://zenodo.org/records/15453634/files/3D_Shape_Recognition_Synthethic_GENERAL_LARGE_SET_76k.zip?download=1)
+
 [2D shape recognition one-shot training set](https://zenodo.org/records/15453634/files/2D_Shapes_Recognition_Textured_Synthetic_Resize2_GENERAL_LARGE_SET_61k.zip?download=1)
+
 [3D materials recognition one-shot training set](https://zenodo.org/records/15453634/files/3D_Materials_PBR_Synthetic_GENERAL_LARGE_SET_80K.zip?download=1)
+
 [2D texture recognition one-shot training set](https://zenodo.org/records/15453634/files/2D_Textures_Recogition__GENERAL_LARGE_SET_Synthetic_53K.zip?download=1)
 
 **In Train.py**  
