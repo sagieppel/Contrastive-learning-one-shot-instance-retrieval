@@ -16,13 +16,13 @@ import reader_class
 
 
 
-train_dir=r"/media/deadcrow/6TB/python_project/Can_LVM_See3D/All_Tests/3D_Shape_Recognition_And_Retrieval_Max_variations"
+train_dir=r"3D_Shape_Recognition_And_Retrieval_Max_variations"
 
 train_folder_structure= "class_base"# "flat"/"class_base". File folder strcuture "flat" mean flat directory: train_dir/instance_dir/img.jpg.  "class" mean train_dir/class_dir/instance_dir/img.jpg
 # "class" should be used for the LAS&T 3D objects synthetic set and "flat" for everything
 
 
-test_dir="samples/benchmark/"
+test_dir=""
 test_folder_structure= "flat"# "flat"/"class_base". File folder strcuture "flat" mean flat directory: train_dir/instance_dir/img.jpg.  "class" mean train_dir/class_dir/instance_dir/img.jpg
 # "class" should be used for the LAS&T 3D objects synthetic set and "flat" for everything
 
@@ -52,7 +52,7 @@ def train(reader_train, readers_test, start_from=0,log_dir="logs/", num_epochs=1
     mean_loss = 0
     model.train()
     mean_accuracy= np.zeros([20],dtype=np.float32)
-    print("astart training")
+    print("start training")
     for step in range(start_from,num_epochs): # main training loop
 
                 imgs, lbls, files = reader_train.readbatch(ncluster=5, ninst=2,augment=True) # read data
@@ -70,10 +70,10 @@ def train(reader_train, readers_test, start_from=0,log_dir="logs/", num_epochs=1
      #*************Statitics evaluation ****************************************88
                 mean_loss = mean_loss*0.99+loss.detach().cpu()*0.01
                 mean_accuracy[step%20]=accuracy
-                if step%1==0:
+                if step%10==0:
                           print(step,"mean loss",mean_loss,"loss",loss, " accuracy",accuracy," mean accuracy",mean_accuracy.mean())
     #----------Run evaluation on test set---------------------------------
-                if step % eval_every == 0:
+                if step % eval_every == 0 and readers_test is not None:
                     res=evaluate(readers_test)
                     print(str(res))
                     txt = "\n" + str(step) + ") \t" +"\t"+str(res) +"\t"
@@ -97,7 +97,7 @@ def evaluate(reader_test):
     correct, total = 0, 0
     with torch.no_grad():
         for ii in range(20):
-                imgs, lbls, files = reader_test.readbatch(ncluster=2, ninst=2,augment=False)
+                imgs, lbls, files = reader_test.readbatch(ncluster=3, ninst=2,augment=False)
 
          #       *****************************************************************************************
          #        for i in range(imgs.shape[0]):
@@ -126,12 +126,13 @@ if train_folder_structure=="class_base":
         train_reader = reader_class.reader(main_dir=train_dir,augmentation_level=augmentation_level)
 else:
         train_reader = reader_flat.reader(main_dir=train_dir, augmentation_level=augmentation_level)
-
-if test_folder_structure=="class_base":
-        test_reader = reader_class.reader(main_dir=test_dir,augmentation_level=augmentation_level)
+if len(test_dir)>0:
+    if test_folder_structure=="class_base":
+            test_reader = reader_class.reader(main_dir=test_dir,augmentation_level=augmentation_level)
+    else:
+            test_reader = reader_flat.reader(main_dir=test_dir, augmentation_level=augmentation_level)
 else:
-        test_reader = reader_flat.reader(main_dir=test_dir, augmentation_level=augmentation_level)
-
+    test_reader=None
 #------start from previously trained ned  ----------------------------------------------
 if load_model==True and os.path.exists(pre_trained_model_path):
     model.load_state_dict(torch.load(pre_trained_model_path, weights_only=True))
