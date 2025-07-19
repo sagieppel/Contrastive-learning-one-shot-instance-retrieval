@@ -14,6 +14,8 @@ Download and extract train data for :
 
 [2D texture recognition one-shot training set](https://zenodo.org/records/15453634/files/2D_Textures_Recogition__GENERAL_LARGE_SET_Synthetic_53K.zip?download=1)
 
+[3D surfaces topography one-shot recognition training set](https://e.pcloud.link/publink/show?code=XZoc7EZwqmv9VndM78XqmVtuMevmHli99By)
+
 **In Train.py**  
 Set the **train_dir** to the folder with the training data.
 
