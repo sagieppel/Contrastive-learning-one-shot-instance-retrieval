@@ -77,7 +77,7 @@ class evaluation_reader():
                      pos_im = cv2.imread(pos_path)
                      self.pos_path = pos_path
                      break
-        #---------------Select two negative images
+        #---------------Select two negative images----------------------------------
         neg_im=[]
         for kk in range(2):
             while (True):
@@ -87,7 +87,7 @@ class evaluation_reader():
                 neg_im.append(cv2.imread(im_path))
                 break
 
-        batch=np.array([pos_im,anch_im,neg_im[0],neg_im[0]])
+        batch=np.array([pos_im,anch_im,neg_im[0],neg_im[1]])
 
 
 
